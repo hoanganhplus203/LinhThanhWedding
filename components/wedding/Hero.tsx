@@ -63,8 +63,7 @@ export default function Hero() {
 
   return (
     <section 
-      id="hero" 
-      className="relative h-screen sm:h-auto flex flex-col items-center justify-center p-4"
+      className="relative flex flex-col items-center justify-center p-4"
     >
       {/* Background Image */}
       <div 

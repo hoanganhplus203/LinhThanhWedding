@@ -1,160 +1,58 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Particles from "@tsparticles/react";
-import { initParticlesEngine } from "@tsparticles/react";
-import { loadSlim } from "@tsparticles/slim";
+import React, { useEffect, useState } from "react";
+
+interface Cloud {
+  id: number;
+  top: string;
+  startX: string;
+  dir: "left" | "right";
+  delay: number;
+  duration: number;
+}
 
 export default function CloudAnimation() {
-  const [isVisible, setIsVisible] = useState(true);
-  const [init, setInit] = useState(false);
+  const [clouds, setClouds] = useState<Cloud[]>([]);
 
   useEffect(() => {
-    initParticlesEngine(async (engine) => {
-      await loadSlim(engine);
-    }).then(() => {
-      setInit(true);
-    });
+    const total = 120; // even denser cloud field
+    const newClouds: Cloud[] = [];
+
+    for (let i = 0; i < total; i++) {
+      // allow some clouds to start slightly above top, others slightly below bottom
+      const top = `${Math.random() * 120 - 10}%`;
+      // horizontal starting position across entire screen
+      const startXVal = Math.random() * 100;
+      const startX = `${startXVal}%`;
+      // choose direction based on which side of centre the cloud starts
+      const dir: "left" | "right" = startXVal < 50 ? "left" : "right";
+      // quicker start delays and shorter travel durations for snappier effect
+      const delay = parseFloat((Math.random() * 0.3).toFixed(2));
+      const duration = parseFloat((2 + Math.random() * 1).toFixed(2));
+      newClouds.push({ id: i, top, startX, dir, delay, duration });
+    }
+
+    setClouds(newClouds);
+    // remove clouds after longest duration
+    const max = Math.max(...newClouds.map(c => c.delay + c.duration));
+    const t = setTimeout(() => setClouds([]), max * 1000 + 500);
+    return () => clearTimeout(t);
   }, []);
-
-  useEffect(() => {
-    // Hide particles after animation completes (4 seconds)
-    const timer = setTimeout(() => {
-      setIsVisible(false);
-    }, 4000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (!isVisible || !init) {
-    return null;
-  }
 
   return (
-    <div className="fixed inset-0 overflow-hidden pointer-events-none z-50">
-      <Particles
-        id="cloud-particles"
-        options={{
-          background: {
-            color: {
-              value: "transparent",
-            },
-          },
-          fpsLimit: 120,
-          particles: {
-            color: {
-              value: ["#FFB6C1", "#FFC0CB", "#FFB6D9", "#FFC0D9", "#FFB6E6"],
-            },
-            number: {
-              value: 0,
-            },
-            shape: {
-              type: "circle",
-            },
-            opacity: {
-              value: 0.9,
-              animation: {
-                enable: true,
-                speed: 0.3,
-                sync: false,
-              },
-            },
-            size: {
-              value: { min: 50, max: 150 },
-              animation: {
-                enable: true,
-                speed: 1,
-                sync: false,
-              },
-            },
-            move: {
-              enable: true,
-              speed: 1,
-              direction: "none",
-              random: false,
-              straight: false,
-              outModes: {
-                default: "destroy",
-              },
-            },
-          },
-          interactivity: {
-            detectsOn: "window",
-            events: {
-              onHover: {
-                enable: false,
-              },
-              onClick: {
-                enable: false,
-              },
-              resize: {
-                enable: true,
-              },
-            },
-          },
-          detectRetina: true,
-          emitters: [
-            {
-              position: {
-                x: 50,
-                y: 50,
-              },
-              rate: {
-                quantity: 30,
-                delay: 0.05,
-              },
-              life: {
-                count: 1,
-                duration: {
-                  value: 2.5,
-                },
-                delay: 0,
-              },
-              particles: {
-                move: {
-                  direction: "left",
-                  speed: { min: 4, max: 6 },
-                },
-                opacity: {
-                  value: 0.85,
-                },
-                size: {
-                  value: { min: 60, max: 120 },
-                },
-              },
-            },
-            {
-              position: {
-                x: 50,
-                y: 50,
-              },
-              rate: {
-                quantity: 30,
-                delay: 0.05,
-              },
-              life: {
-                count: 1,
-                duration: {
-                  value: 2.5,
-                },
-                delay: 0,
-              },
-              particles: {
-                move: {
-                  direction: "right",
-                  speed: { min: 4, max: 6 },
-                },
-                opacity: {
-                  value: 0.85,
-                },
-                size: {
-                  value: { min: 60, max: 120 },
-                },
-              },
-            },
-          ],
-        }}
-      />
+    <div className="cloud-wrapper">
+      {clouds.map(c => (
+        <div
+          key={c.id}
+          className={`cloud ${c.dir}`}
+          style={{
+            top: c.top,
+            left: c.startX,
+            animationDelay: `${c.delay}s`,
+            animationDuration: `${c.duration}s`,
+          }}
+        />
+      ))}
     </div>
   );
 }

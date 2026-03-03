@@ -12,7 +12,6 @@ import CloudAnimation from "@/components/wedding/CloudAnimation";
 export default function Home() {
   return (
     <div className="min-h-screen bg-white relative">
-      <CloudAnimation />
       <Hero />
       <SaveTheDate />
       <CoupleInfo />
@@ -21,6 +20,7 @@ export default function Home() {
       <Location />
       <PhotoAlbum />
       <RSVP />
+      <CloudAnimation />
       <Gift />
     </div>
   );

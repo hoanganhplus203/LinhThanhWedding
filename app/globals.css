@@ -1,3 +1,4 @@
+@import "animate.css/animate.min.css";
 @import "tailwindcss";
 
 /* Custom Fonts */
@@ -48,9 +49,62 @@ html {
 }
 
 body {
+  margin: 0; /* remove default spacing so clouds reach top */
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* new cloud animation */
+.cloud-wrapper {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 9999; /* high to stay on top of everything */
+}
+
+.cloud {
+  position: absolute;
+  left: 50%;
+  width: 25vw;
+  max-width: 600px;
+  height: 120px;
+  background: #ffb6d9;
+  border-radius: 50%/60%; /* pill base */
+  opacity: 0.9;
+  transform: translateX(-50%);
+  box-shadow:
+    -80px -20px 0 0 #ffb6d9,
+    80px -20px 0 0 #ffb6d9,
+    -40px 30px 0 0 #ffb6d9,
+    40px 30px 0 0 #ffb6d9,
+    0 50px 0 0 #ffb6d9,
+    0 10px 20px rgba(0,0,0,0.05);
+}
+/* simplify: extra lobes done via box-shadow; remove pseudos */
+.cloud::before,
+.cloud::after {
+  display: none;
+}
+
+.cloud.left {
+  animation-name: cloudLeft;
+  animation-fill-mode: forwards; /* stay at final state so they don't snap back */
+}
+.cloud.right {
+  animation-name: cloudRight;
+  animation-fill-mode: forwards;
+}
+
+@keyframes cloudLeft {
+  from { transform: translateX(-50%) scale(1); opacity: 0.8; }
+  to { transform: translateX(-300%) scale(1.2); opacity: 0; }
+}
+
+@keyframes cloudRight {
+  from { transform: translateX(-50%) scale(1); opacity: 0.8; }
+  to { transform: translateX(200%) scale(1.2); opacity: 0; }
 }
 
 /* Custom scrollbar */
