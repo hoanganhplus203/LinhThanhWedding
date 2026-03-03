@@ -124,3 +124,280 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #ff9fcc;
 }
+
+/* Wedding Calendar Styles */
+.wc-cal-outer {
+  font-family: var(--font-cafeta), sans-serif;
+}
+
+.wc-cal-head {
+  margin-bottom: 1.5rem;
+}
+
+.wc-cal-month {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.wc-cal-year {
+  text-transform: uppercase;
+}
+
+.wc-cal-frame {
+  width: 100%;
+}
+
+/* FullCalendar custom styles */
+.fc {
+  font-family: var(--font-cafeta), sans-serif;
+}
+
+.fc-theme-standard td,
+.fc-theme-standard th {
+  border-color: #e5e7eb;
+  border-width: 1px;
+}
+
+.fc-daygrid-day {
+  background-color: white;
+}
+
+/* Remove today highlight completely */
+.fc-day-today {
+  background-color: white !important;
+}
+
+.fc-day-today .fc-daygrid-day {
+  background-color: white !important;
+}
+
+.fc-day-today .fc-daygrid-day-frame {
+  background-color: white !important;
+}
+
+.fc-day-today .fc-daygrid-day-number {
+  background-color: transparent !important;
+  color: black !important;
+}
+
+.fc-daygrid-day-today {
+  background-color: white !important;
+}
+
+.fc-daygrid-day-frame {
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 0.5rem;
+}
+
+.fc-daygrid-day-number {
+  font-size: 1rem;
+  padding: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.fc-daygrid-day-top {
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Hide FullCalendar default header completely */
+.fc-col-header {
+  display: none !important;
+}
+
+.fc-scrollgrid-section-header {
+  display: none !important;
+}
+
+.fc-col-header-cell {
+  display: none !important;
+}
+
+.fc-col-header-cell-cushion {
+  display: none !important;
+}
+
+.fc-theme-standard .fc-col-header {
+  display: none !important;
+}
+
+.fc-scrollgrid .fc-scrollgrid-section-header {
+  display: none !important;
+}
+
+/* Custom header styling */
+.wc-cal-grid-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.wc-cal-dow {
+  background-color: #FFB6D9;
+  padding: 0.75rem 0;
+  text-align: center;
+  font-weight: bold;
+  font-size: 0.875rem;
+  color: black;
+}
+
+@media (min-width: 768px) {
+  .wc-cal-dow {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .wc-cal-dow {
+    font-size: 1.125rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .wc-cal-dow {
+    font-size: 1.25rem;
+  }
+}
+
+.wc-cal-day {
+  position: relative;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wc-cal-day-span {
+  font-size: 1rem;
+  font-weight: normal;
+  z-index: 2;
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .wc-cal-day-span {
+    font-size: 1.125rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .wc-cal-day-span {
+    font-size: 1.25rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .wc-cal-day-span {
+    font-size: 1.5rem;
+  }
+}
+
+.wc-cal-day--selected {
+  position: relative;
+}
+
+.wc-cal-day--selected .fc-daygrid-day {
+  background-color: white !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.wc-cal-day--selected .fc-daygrid-day-frame {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.wc-cal-day--selected .fc-daygrid-day-number::after,
+.wc-cal-day--selected .fc-daygrid-day-number::before {
+  display: none !important;
+  content: none !important;
+}
+
+.wc-cal-day--selected .fc-daygrid-day-top::after,
+.wc-cal-day--selected .fc-daygrid-day-top::before {
+  display: none !important;
+  content: none !important;
+}
+
+.wc-cal-day--selected .fc-daygrid-day-frame::after,
+.wc-cal-day--selected .fc-daygrid-day-frame::before {
+  display: none !important;
+  content: none !important;
+}
+
+.wc-cal-day--selected .wc-cal-day-span {
+  font-weight: bold;
+  font-size: 1.4rem;
+  z-index: 3;
+  position: relative;
+  color: #FF1744;
+  text-shadow: none;
+}
+
+.wc-cal-day--selected .fc-daygrid-day-number::after,
+.wc-cal-day--selected .fc-daygrid-day-number::before,
+.wc-cal-day--selected .wc-cal-day-span::after,
+.wc-cal-day--selected .wc-cal-day-span::before {
+  content: none !important;
+  display: none !important;
+}
+
+.wc-cal-day--selected .fc-daygrid-day-top::after,
+.wc-cal-day--selected .fc-daygrid-day-top::before {
+  content: none !important;
+  display: none !important;
+}
+
+.wc-cal-heart {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.95;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+/* Hide navigation and other FullCalendar UI */
+.fc-header-toolbar {
+  display: none !important;
+}
+
+.fc-toolbar {
+  display: none !important;
+}
+
+.fc-button-group {
+  display: none !important;
+}
+
+.fc-button {
+  display: none !important;
+}
+
+/* Grid styling */
+.fc-daygrid-body {
+  width: 100%;
+}
+
+.fc-scrollgrid {
+  border: none;
+}
+
+.fc-scrollgrid-section > table {
+  width: 100%;
+}
+
+.fc-daygrid-day-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

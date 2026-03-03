@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function CoupleInfo() {
   return (
-    <section className="flex flex-col items-center justify-center bg-gradient-to-b from-white to-[#FFB6D9]/10">
+    <section className="flex flex-col items-center justify-center bg-gradient-to-b from-white to-[#FFB6D9]/10 mt-8">
       <div className="text-center space-y-8 max-w-4xl">
         <h2 
           className="text-2xl md:text-3xl lg:text-4xl font-normal text-black mb-4"
