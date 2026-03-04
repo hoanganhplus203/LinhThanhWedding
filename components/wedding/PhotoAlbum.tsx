@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 export default function PhotoAlbum() {
   const photos = [
     // Add photo URLs here
@@ -7,24 +9,118 @@ export default function PhotoAlbum() {
     "/placeholder-2.jpg",
     "/placeholder-3.jpg",
     "/placeholder-4.jpg",
+    "/placeholder-5.jpg",
+    "/placeholder-6.jpg",
+    "/placeholder-7.jpg",
+    "/placeholder-8.jpg",
   ];
 
   return (
-    <section id="album" className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-white to-[#FFB6D9]/10 px-4 py-16">
+    <section id="album" className="flex flex-col items-center justify-center bg-gradient-to-b from-white to-[#FFB6D9]/10 px-4 py-16">
       <div className="text-center space-y-8 max-w-6xl w-full">
-        <h2 className="text-3xl md:text-5xl font-bold text-black mb-12">
-          Album hình cưới
-        </h2>
+        <div className="flex items-center justify-center gap-4 w-full">
+          <h2 
+            className="text-3xl md:text-5xl font-bold text-black whitespace-nowrap flex-shrink-0"
+            style={{ fontFamily: "'LuxuriousScript', sans-serif" }}
+          >
+            Album ảnh cưới
+          </h2>
+          <div className="flex-1 relative" style={{ height: '57.72px' }}>
+            <Image
+              src="/line-heart.webp"
+              alt=""
+              width={493}
+              height={58}
+              className="w-full h-full object-cover"
+              style={{ 
+                objectPosition: 'center center',
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat'
+              }}
+            />
+          </div>
+        </div>
         
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-          {photos.map((photo, index) => (
-            <div
-              key={index}
-              className="aspect-square bg-[#FFB6D9]/20 rounded-lg border-2 border-[#FFB6D9] flex items-center justify-center"
-            >
-              <span className="text-black/40">Photo {index + 1}</span>
+        <div className="space-y-4">
+          {/* Row 1: Photos 1, 2 - same width and height */}
+          <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
+            <div className="aspect-square rounded-lg overflow-hidden hover:scale-[1.02] transition-transform duration-300 cursor-pointer shadow-md hover:shadow-lg relative bg-gray-200">
+              <Image
+                src={photos[0]}
+                alt="Wedding photo 1"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 50vw, 50vw"
+              />
             </div>
-          ))}
+            
+            <div className="aspect-square rounded-lg overflow-hidden hover:scale-[1.02] transition-transform duration-300 cursor-pointer shadow-md hover:shadow-lg relative bg-gray-200">
+              <Image
+                src={photos[1]}
+                alt="Wedding photo 2"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 50vw, 50vw"
+              />
+            </div>
+          </div>
+
+          {/* Row 2: Photos 3, 4, 5 */}
+          <div className="grid grid-cols-2 md:grid-cols-2 gap-4 items-center">
+            <div className="aspect-[3/4] rounded-lg overflow-hidden hover:scale-[1.02] transition-transform duration-300 cursor-pointer shadow-md hover:shadow-lg relative bg-gray-200 self-center">
+              <Image
+                src={photos[2]}
+                alt="Wedding photo 3"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 50vw, 50vw"
+              />
+            </div>
+            
+            <div className="flex flex-col gap-4 items-center justify-center">
+              <div className="aspect-[4/3] w-full rounded-lg overflow-hidden hover:scale-[1.02] transition-transform duration-300 cursor-pointer shadow-md hover:shadow-lg relative bg-gray-200">
+                <Image
+                  src={photos[3]}
+                  alt="Wedding photo 4"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 50vw, 50vw"
+                />
+              </div>
+              <div className="aspect-[4/3] w-full rounded-lg overflow-hidden hover:scale-[1.02] transition-transform duration-300 cursor-pointer shadow-md hover:shadow-lg relative bg-gray-200">
+                <Image
+                  src={photos[4]}
+                  alt="Wedding photo 5"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 50vw, 50vw"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Remaining photos in normal grid */}
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {photos.slice(5).map((photo, index) => {
+              // Photo 8 (index 2 in slice) should be full width and taller
+              const isPhoto8 = index === 2;
+              
+              return (
+                <div
+                  key={index + 5}
+                  className={`${isPhoto8 ? 'col-span-2 md:col-span-3 aspect-[16/6]' : 'aspect-square'} rounded-lg overflow-hidden hover:scale-[1.02] transition-transform duration-300 cursor-pointer shadow-md hover:shadow-lg relative bg-gray-200`}
+                >
+                  <Image
+                    src={photo}
+                    alt={`Wedding photo ${index + 6}`}
+                    fill
+                    className="object-cover"
+                    sizes={isPhoto8 ? "(max-width: 768px) 100vw, 100vw" : "(max-width: 768px) 50vw, 33vw"}
+                  />
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

@@ -20,10 +20,33 @@ const dancingScript = Dancing_Script({
 
 export const metadata: Metadata = {
   title: "Thành & Linh",
-  description: "Trang web lễ cưới của Đức Thành & Mỹ Linh",
+  description: "Trân trọng kính mời quý khách đến tham dự lễ cưới của Đức Thành & Mỹ Linh",
   icons: {
     icon: "/favicon.ico",
   },
+  openGraph: {
+    title: "Thành & Linh",
+    description: "Trân trọng kính mời quý khách đến tham dự lễ cưới của Đức Thành & Mỹ Linh",
+    url: "https://thanhlinh.online", // Replace with your actual domain
+    siteName: "Thành & Linh Wedding",
+    images: [
+      {
+        url: "/KEIY9680 (1).jpg", // Preview image when sharing
+        width: 1200,
+        height: 630,
+        alt: "Đức Thành & Mỹ Linh",
+      },
+    ],
+    locale: "vi_VN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Thành & Linh",
+    description: "Trân trọng kính mời quý khách đến tham dự lễ cưới của Đức Thành & Mỹ Linh",
+    images: ["/KEIY9680 (1).jpg"],
+  },
+  metadataBase: new URL("https://thanhlinh.online"), // Replace with your actual domain
 };
 
 export default function RootLayout({

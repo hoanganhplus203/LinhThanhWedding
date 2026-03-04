@@ -34,7 +34,7 @@ export default function Invitation() {
               </div>
               <div className="relative w-44 sm:w-64 md:w-80 lg:w-96 aspect-[3/4] overflow-hidden">
                 <Image
-                  src="/DNG_1307.jpg"
+                  src="/DNG_1303.jpg"
                   alt="Wedding Photo 2"
                   fill
                   className="object-cover"

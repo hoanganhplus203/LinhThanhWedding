@@ -278,12 +278,20 @@ body {
   font-weight: normal;
   z-index: 2;
   position: relative;
+  color: black; /* ensure visible on all browsers */
+  display: inline-block; /* prevent flex shrinking on iOS */
+  min-width: 1ch; /* avoid disappearing when scaled */
 }
 
 @media (min-width: 768px) {
   .wc-cal-day-span {
     font-size: 1.125rem;
   }
+}
+
+/* prevent iOS Safari from automatically resizing text in flex containers */
+body {
+  -webkit-text-size-adjust: 100%;
 }
 
 @media (min-width: 1024px) {
@@ -355,16 +363,6 @@ body {
   display: none !important;
 }
 
-.wc-cal-heart {
-  position: absolute;
-  z-index: 1;
-  pointer-events: none;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0.95;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-}
 
 /* Hide navigation and other FullCalendar UI */
 .fc-header-toolbar {

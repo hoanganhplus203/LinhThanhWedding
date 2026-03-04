@@ -6,8 +6,8 @@ import EventDetails from "@/components/wedding/EventDetails";
 import Location from "@/components/wedding/Location";
 import PhotoAlbum from "@/components/wedding/PhotoAlbum";
 import RSVP from "@/components/wedding/RSVP";
-import Gift from "@/components/wedding/Gift";
 import CloudAnimation from "@/components/wedding/CloudAnimation";
+import Footer from "@/components/wedding/Footer";
 
 export default function Home() {
   return (
@@ -18,10 +18,10 @@ export default function Home() {
       <Invitation />
       <EventDetails />
       <Location />
-      <PhotoAlbum />
       <RSVP />
+      <PhotoAlbum />
+      <Footer />
       <CloudAnimation />
-      <Gift />
     </div>
   );
 }

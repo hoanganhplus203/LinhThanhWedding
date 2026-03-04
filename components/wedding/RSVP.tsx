@@ -1,114 +1,243 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import { supabase } from "@/lib/supabase";
+import toast, { Toaster } from 'react-hot-toast';
+
+const validationSchema = Yup.object({
+  name: Yup.string()
+    .required("Tên là bắt buộc"),
+  message: Yup.string()
+    .required("Lời chúc là bắt buộc"),
+});
+
+interface Message {
+  id: number;
+  name: string;
+  message: string;
+  created_at: string;
+}
 
 export default function RSVP() {
-  const [name, setName] = useState("");
-  const [attendance, setAttendance] = useState<"yes" | "no" | null>(null);
-  const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  // Load messages from Supabase on component mount
+  useEffect(() => {
+    loadMessages();
+  }, []);
+
+  const loadMessages = async () => {
+    try {
+      if (!supabase) {
+        console.warn('Supabase client not initialized. Please check your environment variables.');
+        setMessages([]);
+        setLoading(false);
+        return;
+      }
+
+      const { data, error } = await supabase
+        .from('messages')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (error) {
+        // Only log error, don't show alert for loading errors
+        console.warn('Error loading messages (this is normal if table does not exist yet):', {
+          message: error.message,
+          details: error.details,
+          hint: error.hint,
+          code: error.code
+        });
+        // If table doesn't exist or RLS issue, set empty array silently
+        setMessages([]);
+      } else {
+        setMessages(data || []);
+      }
+    } catch (error: any) {
+      console.error('Error loading messages:', error?.message || error);
+      // Set empty array on error to prevent UI issues
+      setMessages([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleSubmit = async (values: { name: string; message: string }, { resetForm }: any) => {
+    // Prevent submission if already submitting
+    if (isSubmitting) {
+      return;
+    }
+
     setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
-      setSubmitted(true);
-      setName("");
-      setAttendance(null);
-      setMessage("");
+    try {
+      if (!supabase) {
+        console.error('Supabase client not initialized');
+        toast.error('Supabase chưa được cấu hình. Vui lòng kiểm tra biến môi trường.');
+        setIsSubmitting(false);
+        return;
+      }
+
+      const { data, error } = await supabase
+        .from('messages')
+        .insert([
+          {
+            name: values.name.trim(),
+            message: values.message.trim(),
+          },
+        ])
+        .select()
+        .single();
+
+      if (error) {
+        console.error('Error submitting message:', {
+          message: error.message,
+          details: error.details,
+          hint: error.hint,
+          code: error.code
+        });
+        toast.error(`Có lỗi xảy ra khi gửi lời chúc: ${error.message || 'Vui lòng thử lại.'}`);
+        setIsSubmitting(false);
+        return;
+      }
+
+      // Add new message to the list
+      if (data) {
+        setMessages((prev) => [data, ...prev]);
+      }
+
+      // Show success toast
+      toast.success('Cảm Ơn Lời Chúc Của Quý Khách');
+
+      resetForm();
+    } catch (error: any) {
+      console.error('Error submitting message:', error?.message || error);
+      if (error?.message) {
+        toast.error(`Có lỗi xảy ra khi gửi lời chúc: ${error.message}`);
+      } else {
+        toast.error('Có lỗi xảy ra khi gửi lời chúc. Vui lòng thử lại.');
+      }
+    } finally {
       setIsSubmitting(false);
-    }, 500);
+    }
   };
 
   return (
-    <section id="rsvp" className="min-h-screen flex flex-col items-center justify-center bg-white px-4 py-16">
+    <section id="rsvp" className="flex flex-col items-center justify-center bg-white p-4">
+      <Toaster position="top-center" />
       <div className="text-center space-y-8 max-w-2xl w-full">
-        <h2 className="text-3xl md:text-5xl font-bold text-black mb-4">
-          Xác Nhận Tham Dự
+        <h2
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-black mb-4"
+          style={{ fontFamily: "'LuxuriousScript', sans-serif" }}
+        >
+          Gửi Lời Chúc
         </h2>
-        <p className="text-lg text-black/70 mb-8">
-          Rất hân hạnh được đón tiếp!
-        </p>
 
-        {submitted ? (
-          <div className="p-8 bg-[#FFB6D9]/20 rounded-lg border-2 border-[#FFB6D9] space-y-4">
-            <h3 className="text-2xl font-bold text-black mb-2">Thank You!</h3>
-            <p className="text-lg text-black font-semibold">
-              Cảm Ơn Quý Khách Đã Phản Hồi,
-            </p>
-            <p className="text-lg text-black font-semibold">
-              Rất Hân Hạnh Được Đón Tiếp!
+        {/* Messages List */}
+        {loading ? (
+          <div className="mt-8 mb-6 text-center">
+            <p className="text-gray-500" style={{ fontFamily: "'UTM-Cafeta', sans-serif" }}>
+              Đang tải lời chúc...
             </p>
           </div>
-        ) : (
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
-              <label className="block text-left text-black font-semibold mb-2">
-                Tên của bạn
-              </label>
-              <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-                className="w-full px-4 py-3 border-2 border-black rounded-lg focus:outline-none focus:border-[#FFB6D9]"
-              />
-            </div>
+        ) : messages.length > 0 ? (
+          <div className="mt-8 mb-6">
+            <div className="max-h-96 overflow-y-auto space-y-4 pr-2">
+              {messages.map((msg) => (
+                <div
+                  key={msg.id}
+                  className="bg-[#FFB6D9]/10 border-2 border-[#FFB6D9]/30 rounded-xl p-5 text-left"
+                >
+                  <span
+                    className="text-base text-gray-500"
+                  >
+                    {new Date(msg.created_at).toLocaleDateString('vi-VN', {
+                      day: '2-digit',
+                      month: '2-digit',
+                      year: 'numeric',
+                      hour: '2-digit',
+                      minute: '2-digit'
+                    })}
+                  </span>
+                  <div className="flex items-center justify-between">
+                    <h4
+                      className="font-semibold text-black text-base"
+                    >
+                      {msg.name}
+                    </h4>
 
-            <div>
-              <label className="block text-left text-black font-semibold mb-4">
-                Bạn Có Tham Dự Không?
-              </label>
-              <div className="flex gap-4">
-                <button
-                  type="button"
-                  onClick={() => setAttendance("yes")}
-                  className={`flex-1 px-6 py-3 rounded-lg font-semibold transition-colors ${
-                    attendance === "yes"
-                      ? "bg-[#FFB6D9] text-black border-2 border-black"
-                      : "bg-white text-black border-2 border-black hover:bg-[#FFB6D9]/20"
-                  }`}
+                  </div>
+                  <p
+                    className="text-black leading-relaxed text-base"
+                  >
+                    {msg.message}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : null}
+
+        <Formik
+          initialValues={{ name: "", message: "" }}
+          validationSchema={validationSchema}
+          onSubmit={handleSubmit}
+        >
+          {({ isSubmitting: formikSubmitting }) => (
+            <Form className="space-y-6">
+              <div>
+                <label
+                  className="block text-left text-black font-semibold mb-2 text-base"
+                  style={{ fontFamily: "'UTM-Cafeta', sans-serif" }}
                 >
-                  Có Thể Tham Dự
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setAttendance("no")}
-                  className={`flex-1 px-6 py-3 rounded-lg font-semibold transition-colors ${
-                    attendance === "no"
-                      ? "bg-[#FFB6D9] text-black border-2 border-black"
-                      : "bg-white text-black border-2 border-black hover:bg-[#FFB6D9]/20"
-                  }`}
-                >
-                  Không Thể Tham Dự
-                </button>
+                  Tên của bạn
+                </label>
+                <Field
+                  type="text"
+                  name="name"
+                  placeholder="Nhập tên của bạn..."
+                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#FFB6D9] focus:ring-2 focus:ring-[#FFB6D9]/20 transition-all duration-200 bg-white text-black text-base placeholder:text-gray-500"
+                  style={{ fontFamily: "'UTM-Cafeta', sans-serif" }}
+                />
+                <div className="text-red-500 text-sm mt-1 text-left font-medium" style={{ fontFamily: "'UTM-Cafeta', sans-serif" }}>
+                  <ErrorMessage name="name" component="div" />
+                </div>
               </div>
-            </div>
 
-            <div>
-              <label className="block text-left text-black font-semibold mb-2">
-                Lời nhắn (tùy chọn)
-              </label>
-              <textarea
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                rows={4}
-                className="w-full px-4 py-3 border-2 border-black rounded-lg focus:outline-none focus:border-[#FFB6D9]"
-              />
-            </div>
+              <div>
+                <label
+                  className="block text-left text-black font-semibold mb-2 text-base"
+                  style={{ fontFamily: "'UTM-Cafeta', sans-serif" }}
+                >
+                  Lời chúc
+                </label>
+                <Field
+                  as="textarea"
+                  name="message"
+                  rows={5}
+                  placeholder="Nhập lời chúc của bạn..."
+                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#FFB6D9] focus:ring-2 focus:ring-[#FFB6D9]/20 transition-all duration-200 bg-white text-black text-base placeholder:text-gray-500 resize-none"
+                  style={{ fontFamily: "'UTM-Cafeta', sans-serif" }}
+                />
+                <div className="text-red-500 text-sm mt-1 text-left font-medium" style={{ fontFamily: "'UTM-Cafeta', sans-serif" }}>
+                  <ErrorMessage name="message" component="div" />
+                </div>
+              </div>
 
-            <button
-              type="submit"
-              disabled={isSubmitting || !attendance}
-              className="w-full px-8 py-4 bg-black text-white rounded-lg font-semibold hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {isSubmitting ? "Đang gửi..." : "GỬI NGAY"}
-            </button>
-          </form>
-        )}
+              <button
+                type="submit"
+                disabled={isSubmitting || formikSubmitting}
+                className="w-full px-6 py-3 bg-[#FFB6D9] text-white rounded-lg font-semibold hover:bg-[#FFB6D9]/80 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-base"
+              >
+                {isSubmitting ? "Đang gửi..." : "GỬI NGAY"}
+              </button>
+            </Form>
+          )}
+        </Formik>
       </div>
     </section>
   );
