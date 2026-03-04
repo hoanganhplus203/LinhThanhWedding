@@ -75,7 +75,7 @@ export default function Hero() {
       <div className="relative z-10 w-full flex flex-col items-center justify-center">
         <audio
           ref={audioRef}
-          src="/co-cong-mai-sat-remix-ngo-lan-huong.mp3"
+          src="/五十年以后.mp3"
           loop
         />
         

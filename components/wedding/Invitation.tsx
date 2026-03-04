@@ -20,7 +20,7 @@ export default function Invitation() {
           {/* Text and Image Gallery - on 2 lines */}
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:gap-6">
             <p className="text-lg md:text-xl lg:text-4xl text-center text-black/80 whitespace-nowrap">
-              THAM DỰ LỄ CƯỚI ĐỨC THÀNH & MỸ LINH
+              THAM DỰ LỄ THÀNH HÔN <br/> ĐỨC THÀNH & MỸ LINH
             </p>
             <div className="flex flex-row items-center justify-center gap-2 sm:gap-3 md:gap-4">
               <div className="relative w-28 sm:w-40 md:w-52 lg:w-64 aspect-[3/4] overflow-hidden">
@@ -52,59 +52,126 @@ export default function Invitation() {
               </div>
             </div>
           </div>
-          
-          {/* Time format matching Hero.tsx */}
-          <div className="mt-12 flex items-stretch justify-center gap-4 sm:gap-6 md:gap-8">
-            {/* Column 1: Time only */}
-            <div className="flex items-center justify-center flex-1">
-              <p 
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-black font-light"
-                style={{ fontFamily: "'UTM-Cafeta', sans-serif" }}
-              >
-                11 giờ 00
-              </p>
+
+          {/* Bride's family intimate dinner - Evening before */}
+          <div className="mt-12 border-t border-black/20 pt-8">
+            <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-black/80 font-semibold mb-6">
+              TIỆC THÂN MẬT NHÀ GÁI
+            </p>
+
+            {/* Time format matching Hero.tsx */}
+            <div className="mt-8 flex items-stretch justify-center gap-4 sm:gap-6 md:gap-8">
+              {/* Column 1: Time only */}
+              <div className="flex items-center justify-center flex-1">
+                <p 
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-black font-light"
+                  style={{ fontFamily: "'UTM-Cafeta', sans-serif" }}
+                >
+                  18 giờ 30
+                </p>
+              </div>
+
+              {/* Column 2: Day and Date - 3 columns layout with border separator */}
+              <div className="flex flex-col items-center justify-center gap-1 border-l border-black pl-4 sm:pl-6 md:pl-8 flex-1">
+                <p 
+                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-black font-light"
+                  style={{ fontFamily: "'UTM-Cafeta', sans-serif" }}
+                >
+                  Thứ Bảy
+                </p>
+                <p 
+                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-black font-light"
+                  style={{ fontFamily: "'UTM-Cafeta', sans-serif" }}
+                >
+                  28
+                </p>
+                <p 
+                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-black font-light"
+                  style={{ fontFamily: "'UTM-Cafeta', sans-serif" }}
+                >
+                  Tháng 3
+                </p>
+              </div>
+
+              {/* Column 3: Year with border separator */}
+              <div className="flex items-center border-l border-black pl-4 sm:pl-6 md:pl-8 flex-1">
+                <p 
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-black font-light"
+                  style={{ fontFamily: "'UTM-Cafeta', sans-serif" }}
+                >
+                  Năm 2026
+                </p>
+              </div>
             </div>
 
-            {/* Column 2: Day and Date - 3 columns layout with border separator */}
-            <div className="flex flex-col items-center justify-center gap-1 border-l border-black pl-4 sm:pl-6 md:pl-8 flex-1">
-              <p 
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-black font-light"
-                style={{ fontFamily: "'UTM-Cafeta', sans-serif" }}
-              >
-                Chủ Nhật
-              </p>
-              <p 
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-black font-light"
-                style={{ fontFamily: "'UTM-Cafeta', sans-serif" }}
-              >
-                29
-              </p>
-              <p 
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-black font-light"
-                style={{ fontFamily: "'UTM-Cafeta', sans-serif" }}
-              >
-                Tháng 3
-              </p>
-            </div>
+            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-black/70 mt-4">
+              (Tức Ngày 10 Tháng 02 Năm Bính Ngọ)
+            </p>
 
-            {/* Column 3: Year with border separator */}
-            <div className="flex items-center border-l border-black pl-4 sm:pl-6 md:pl-8 flex-1">
-              <p 
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-black font-light"
-                style={{ fontFamily: "'UTM-Cafeta', sans-serif" }}
-              >
-                Năm 2026
-              </p>
-            </div>
+            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-black/80 mt-6 font-bold">
+              TẠI: TƯ GIA NHÀ GÁI
+            </p>
           </div>
+          
+          {/* Main Wedding Ceremony */}
+          <div className="mt-12 border-t border-black/20 pt-8">
+            <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-black/80 font-semibold mb-6">
+              LỄ THÀNH HÔN
+            </p>
 
-          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-black/70 mt-4">
-            (Tức Ngày 11 Tháng 02 Năm Bính Ngọ)
-          </p>
+            {/* Time format matching Hero.tsx */}
+            <div className="mt-8 flex items-stretch justify-center gap-4 sm:gap-6 md:gap-8">
+              {/* Column 1: Time only */}
+              <div className="flex items-center justify-center flex-1">
+                <p 
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-black font-light"
+                  style={{ fontFamily: "'UTM-Cafeta', sans-serif" }}
+                >
+                  11 giờ 00
+                </p>
+              </div>
 
-          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-black/80 mt-6 font-bold">
-            TẠI: NHÀ HÀNG TRỐNG ĐỒNG PALACE
-          </p>
+              {/* Column 2: Day and Date - 3 columns layout with border separator */}
+              <div className="flex flex-col items-center justify-center gap-1 border-l border-black pl-4 sm:pl-6 md:pl-8 flex-1">
+                <p 
+                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-black font-light"
+                  style={{ fontFamily: "'UTM-Cafeta', sans-serif" }}
+                >
+                  Chủ Nhật
+                </p>
+                <p 
+                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-black font-light"
+                  style={{ fontFamily: "'UTM-Cafeta', sans-serif" }}
+                >
+                  29
+                </p>
+                <p 
+                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-black font-light"
+                  style={{ fontFamily: "'UTM-Cafeta', sans-serif" }}
+                >
+                  Tháng 3
+                </p>
+              </div>
+
+              {/* Column 3: Year with border separator */}
+              <div className="flex items-center border-l border-black pl-4 sm:pl-6 md:pl-8 flex-1">
+                <p 
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-black font-light"
+                  style={{ fontFamily: "'UTM-Cafeta', sans-serif" }}
+                >
+                  Năm 2026
+                </p>
+              </div>
+            </div>
+
+            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-black/70 mt-4">
+              (Tức Ngày 11 Tháng 02 Năm Bính Ngọ)
+            </p>
+
+            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-black/80 mt-6 font-bold">
+              TẠI: NHÀ HÀNG TRỐNG ĐỒNG PALACE
+            </p>
+          </div>
 
         </div>
       </div>

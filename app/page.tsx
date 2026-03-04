@@ -15,11 +15,11 @@ export default function Home() {
       <Hero />
       <SaveTheDate />
       <CoupleInfo />
+      <PhotoAlbum />
       <Invitation />
       <EventDetails />
       <Location />
       <RSVP />
-      <PhotoAlbum />
       <Footer />
       <CloudAnimation />
     </div>

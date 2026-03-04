@@ -23,7 +23,7 @@ export default function Location() {
             />
           </div>
         </div>
-        
+
         <h2 className="text-2xl md:text-3xl font-bold text-white bg-[#FFB6D9] -mx-4 px-4 py-4 flex items-center gap-2 justify-center">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 md:w-6 md:h-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
@@ -31,44 +31,79 @@ export default function Location() {
           </svg>
           Địa Điểm Tổ Chức
         </h2>
-        
-        <div className="space-y-6">  
-          <div className="space-y-4">
-            <h4 className="text-xl md:text-2xl font-semibold text-black text-center">NHÀ HÀNG TRỐNG ĐỒNG PALACE 
-            </h4>
-          </div>
-          <div className="flex items-center justify-center gap-2">
-            <p className="text-lg md:text-xl text-black/80">
-              Số 30 Trần Phú, KĐT Dệt May, T.Ninh Bình
-            </p>
+
+        <div className="space-y-12">
+          {/* Bride's family intimate dinner */}
+          <div className="space-y-6 border-b border-black/20 pb-12">
+            <div className="space-y-4">
+              <h4 className="text-xl md:text-2xl font-semibold text-black text-center">
+                TƯ GIA NHÀ GÁI
+              </h4>
+            </div>
+            <div className="flex items-center justify-center gap-2">
+              <p className="text-lg md:text-xl text-black/80 text-center">
+                (Xã Giao Minh, T.Ninh Bình)
+              </p>
+            </div>
+
+            {/* Map Embed - Placeholder, needs update when address is available */}
+            <div className="mt-8 w-full px-4 flex justify-center">
+              <div className="relative w-full max-w-4xl h-[300px] sm:h-[400px] md:h-[500px] bg-gray-100 flex items-center justify-center">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d233.91601737743275!2d106.5310016212903!3d20.27308512455216!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3136001f11e1f143%3A0xa342282ff3c0cd75!2zN0dGSis2RkYsIMSQVDQ4OSwgR2lhbyBUaGnhu4duLCBHaWFvIFRodeG7tywgTmFtIMSQ4buLbmgsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1772605426196!5m2!1svi!2s" width="600" height="450" loading="lazy" allowFullScreen className="w-full h-full"></iframe>
+              </div>
+            </div>
+
+            <div className="mt-8 flex justify-center">
+              <a
+                href="https://maps.app.goo.gl/7afTcKsDbtSE3qpw9"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-2 bg-[#FFB6D9] text-white rounded-full font-semibold hover:bg-[#FFB6D9]/80 transition-colors"
+              >
+                Xem Chỉ Đường
+              </a>
+            </div>
           </div>
 
-          <div className="mt-8 flex justify-center">
-            <a
-              href="https://maps.app.goo.gl/gtibSSXxr7FGwuoJ9"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-8 py-2 bg-[#FFB6D9] text-white rounded-full font-semibold hover:bg-[#FFB6D9]/80 transition-colors"
-            >
-              Xem Chỉ Đường
-            </a>
-          </div>
+          {/* Wedding Ceremony - Restaurant */}
+          <div className="space-y-6">
+            <div className="space-y-4">
+              <h4 className="text-xl md:text-2xl font-semibold text-black text-center">
+                NHÀ HÀNG TRỐNG ĐỒNG PALACE
+              </h4>
+            </div>
+            <div className="flex items-center justify-center gap-2">
+              <p className="text-lg md:text-xl text-black/80">
+                Số 30 Trần Phú, KĐT Dệt May, T.Ninh Bình
+              </p>
+            </div>
 
-          {/* Map Embed */}
+            {/* Map Embed */}
             <div className="mt-8 w-full px-4 flex justify-center">
               <div className="relative w-full max-w-4xl h-[300px] sm:h-[400px] md:h-[500px]">
-            <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3739.024948733807!2d106.16920287612525!3d20.42305450830493!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135e125738550d5%3A0x6ae4e580545d2597!2zVHLhu5FuZyDEkOG7k25nIFBhbGFjZQ!5e0!3m2!1svi!2s!4v1772561447208!5m2!1svi!2s" 
-              width="600" 
-              height="450" 
-              allowFullScreen
-              loading="lazy" 
-              referrerPolicy="no-referrer-when-downgrade"
-              className="w-full h-full"
-            ></iframe>
-            </div>
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3739.024948733807!2d106.16920287612525!3d20.42305450830493!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135e125738550d5%3A0x6ae4e580545d2597!2zVHLhu5FuZyDEkOG7k25nIFBhbGFjZQ!5e0!3m2!1svi!2s!4v1772561447208!5m2!1svi!2s"
+                  width="600"
+                  height="450"
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="w-full h-full"
+                ></iframe>
+              </div>
             </div>
 
+            <div className="mt-8 flex justify-center">
+              <a
+                href="https://maps.app.goo.gl/gtibSSXxr7FGwuoJ9"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-2 bg-[#FFB6D9] text-white rounded-full font-semibold hover:bg-[#FFB6D9]/80 transition-colors"
+              >
+                Xem Chỉ Đường
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
