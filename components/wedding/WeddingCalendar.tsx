@@ -4,7 +4,6 @@ import { useEffect, useRef } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import type { DayCellContentArg } from "@fullcalendar/core";
-import Image from "next/image";
 
 export default function WeddingCalendar() {
   const calendarRef = useRef<FullCalendar>(null);

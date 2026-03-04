@@ -27,11 +27,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Thành & Linh",
     description: "Trân trọng kính mời quý khách đến tham dự lễ cưới của Đức Thành & Mỹ Linh",
-    url: "https://thanhlinh.online", // Replace with your actual domain
+    url: "https://thanhlinh.online",
     siteName: "Thành & Linh Wedding",
     images: [
       {
-        url: "/KEIY9680 (1).jpg", // Preview image when sharing
+        url: "https://thanhlinh.online/og-image.jpg", // Absolute URL for OG image
         width: 1200,
         height: 630,
         alt: "Đức Thành & Mỹ Linh",
@@ -44,9 +44,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Thành & Linh",
     description: "Trân trọng kính mời quý khách đến tham dự lễ cưới của Đức Thành & Mỹ Linh",
-    images: ["/KEIY9680 (1).jpg"],
+    images: ["https://thanhlinh.online/og-image.jpg"], // Absolute URL for Twitter image
   },
-  metadataBase: new URL("https://thanhlinh.online"), // Replace with your actual domain
+  metadataBase: new URL("https://thanhlinh.online"),
 };
 
 export default function RootLayout({
