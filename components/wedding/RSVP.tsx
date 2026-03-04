@@ -145,7 +145,7 @@ export default function RSVP() {
             </p>
           </div>
         ) : messages.length > 0 ? (
-          <div className="mt-8 mb-6">
+          <div className="mt-8 mb-6 border-2 border-[#FFB6D9]/30 rounded-xl p-5">
             <div className="max-h-96 overflow-y-auto space-y-4 pr-2">
               {messages.map((msg) => (
                 <div
