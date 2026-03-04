@@ -99,27 +99,38 @@ export default function PhotoAlbum() {
             </div>
           </div>
 
-          {/* Remaining photos in normal grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {photos.slice(5).map((photo, index) => {
-              // Photo 8 (index 2 in slice) should be full width and taller
-              const isPhoto8 = index === 2;
-              
-              return (
-                <div
-                  key={index + 5}
-                  className={`${isPhoto8 ? 'col-span-2 md:col-span-3 aspect-[16/6]' : 'aspect-square'} rounded-lg overflow-hidden hover:scale-[1.02] transition-transform duration-300 cursor-pointer shadow-md hover:shadow-lg relative bg-gray-200`}
-                >
-                  <Image
-                    src={photo}
-                    alt={`Wedding photo ${index + 6}`}
-                    fill
-                    className="object-cover"
-                    sizes={isPhoto8 ? "(max-width: 768px) 100vw, 100vw" : "(max-width: 768px) 50vw, 33vw"}
-                  />
-                </div>
-              );
-            })}
+          {/* Row 3: Photos 6, 7 - same width and height */}
+          <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
+            <div className="aspect-square rounded-lg overflow-hidden hover:scale-[1.02] transition-transform duration-300 cursor-pointer shadow-md hover:shadow-lg relative bg-gray-200">
+              <Image
+                src={photos[5]}
+                alt="Wedding photo 6"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 50vw, 50vw"
+              />
+            </div>
+            
+            <div className="aspect-square rounded-lg overflow-hidden hover:scale-[1.02] transition-transform duration-300 cursor-pointer shadow-md hover:shadow-lg relative bg-gray-200">
+              <Image
+                src={photos[6]}
+                alt="Wedding photo 7"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 50vw, 50vw"
+              />
+            </div>
+          </div>
+
+          {/* Photo 8: Full width and taller */}
+          <div className="w-full aspect-[16/6] rounded-lg overflow-hidden hover:scale-[1.02] transition-transform duration-300 cursor-pointer shadow-md hover:shadow-lg relative bg-gray-200">
+            <Image
+              src={photos[7]}
+              alt="Wedding photo 8"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 100vw"
+            />
           </div>
         </div>
       </div>
