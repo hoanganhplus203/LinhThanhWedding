@@ -7,6 +7,7 @@ import Location from "@/components/wedding/Location";
 import PhotoAlbum from "@/components/wedding/PhotoAlbum";
 import RSVP from "@/components/wedding/RSVP";
 import CloudAnimation from "@/components/wedding/CloudAnimation";
+import Footer from "@/components/wedding/Footer";
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
       <Location />
       <RSVP />
       <PhotoAlbum />
+      <Footer />
       <CloudAnimation />
     </div>
   );

@@ -11,11 +11,13 @@
   "dependencies": {
     "@fullcalendar/daygrid": "^6.1.20",
     "@fullcalendar/react": "^6.1.20",
+    "@supabase/supabase-js": "^2.98.0",
     "animate.css": "^4.1.1",
     "formik": "^2.4.9",
     "next": "16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3",
+    "react-hot-toast": "^2.6.0",
     "yup": "^1.7.1"
   },
   "devDependencies": {
