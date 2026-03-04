@@ -19,8 +19,11 @@ const dancingScript = Dancing_Script({
 });
 
 export const metadata: Metadata = {
-  title: "Đức Thành & Mỹ Linh",
+  title: "Thành & Linh",
   description: "Trang web lễ cưới của Đức Thành & Mỹ Linh",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
