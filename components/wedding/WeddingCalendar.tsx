@@ -26,15 +26,6 @@ export default function WeddingCalendar() {
     return (
       <div className="relative w-full h-full flex items-center justify-center">
         <span className={`wc-cal-day-span ${isMarch29 ? "font-bold" : ""}`}>{dayNumber}</span>
-        {isMarch29 && (
-          <Image
-            src="/heart.png"
-            alt="Heart"
-            width={50}
-            height={50}
-            className="wc-cal-heart w-10 h-10 md:w-12 md:h-12"
-          />
-        )}
       </div>
     );
   };
