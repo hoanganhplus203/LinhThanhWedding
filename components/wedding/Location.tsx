@@ -49,13 +49,13 @@ export default function Location() {
             {/* Map Embed - Placeholder, needs update when address is available */}
             <div className="mt-8 w-full px-4 flex justify-center">
               <div className="relative w-full max-w-4xl h-[300px] sm:h-[400px] md:h-[500px] bg-gray-100 flex items-center justify-center">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d233.91601737743275!2d106.5310016212903!3d20.27308512455216!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3136001f11e1f143%3A0xa342282ff3c0cd75!2zN0dGSis2RkYsIMSQVDQ4OSwgR2lhbyBUaGnhu4duLCBHaWFvIFRodeG7tywgTmFtIMSQ4buLbmgsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1772605426196!5m2!1svi!2s" width="600" height="450" loading="lazy" allowFullScreen className="w-full h-full"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d233.916225068338!2d106.5311178!3d20.2729474!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3136001f0fba31c1%3A0x178d731bfc2c9738!2zTmhhzIAgbWF5IEjGsMahbmcgUGjGsMahzKNuZw!5e0!3m2!1svi!2s!4v1772678999297!5m2!1svi!2s" width="600" height="450" loading="lazy" allowFullScreen className="w-full h-full"></iframe>
               </div>
             </div>
 
             <div className="mt-8 flex justify-center">
               <a
-                href="https://maps.app.goo.gl/7afTcKsDbtSE3qpw9"
+                href="https://maps.app.goo.gl/DezGwChKrLKMoJAC6"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-8 py-2 bg-[#FFB6D9] text-white rounded-full font-semibold hover:bg-[#FFB6D9]/80 transition-colors"

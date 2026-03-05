@@ -7,9 +7,9 @@ export default function PhotoAlbum() {
     "/DNG_1249.jpg",
     "/KEIY9700 (1).jpg",
     "/KEIY9624_(2) (1).jpg",
-    "/DNG_1564.jpg",
+    "/DNG_1037.jpg",
     "/DNG_1295.jpg",
-    "/DNG_1526.jpg",
+    "/DNG_0853.jpg",
     "/KEIY9891 (1).jpg",
     "/KEIY9797 (1).jpg",
   ];
